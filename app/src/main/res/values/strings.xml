@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Yes, Mr. White!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="tipo_list">
+        <item>Metais Alcalinos</item>
+        <item>Metais Alcalinos - Terrosos</item>
+        <item>Metais de transição</item>
+        <item>Lantanídeos</item>
+        <item>Actinídeos</item>
+        <item>Outros Metais</item>
+        <item>Não-metais</item>
+        <item>Gases Nobres</item>
+    </string-array>
+
+    <string-array name="resp_num_list">
+        <item>3</item>
+        <item>6</item>
+        <item>9</item>
+    </string-array>
+</resources>
