@@ -1,4 +1,4 @@
-package aulatopicos.jogocanhao;
+package com.equipe.yesmrwhite.quimica;
 
 /**
  * Created by magdi on 20/05/2016.
