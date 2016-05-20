@@ -147,7 +147,11 @@ public class Elemento {
                                         case 17:
                                             return "Não-Metal/Halogêneo";
                                         default:
-                                            return null;
+                                            if(getSimbolo().equals("H")){
+                                                return "Não-Metal/Outro Não-Metal";
+                                            }else {
+                                                return null;
+                                            }
                                     }
                                 }
                             }
