@@ -1,0 +1,5 @@
+﻿O-Oxigênio-elements/o.png-8-16.00-2-16
+S-Enxofre-elements/s.png-16-32.06-3-16
+Se-Selênio-elements/se.png-34-78.96-4-16
+Te-Telúrio-elements/te.png-52-127.6-5-16
+Po-Polônio-elements/po.png-84-209.0-6-16

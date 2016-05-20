@@ -1,0 +1,5 @@
+﻿F-Flúor-elements/f.png-9-19.00-2-17
+Cl-Cloro-elements/cl.png-17-35.45-3-17
+Br-Bromo-elements/br.png-35-79.90-4-17
+I-Iodo-elements/i.png-53-126.9-5-17
+At-Astato-elements/at.png-85-210.0-6-17

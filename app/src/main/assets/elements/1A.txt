@@ -1,0 +1,7 @@
+﻿H-Hidrogênio-elements/h.png-1-1.008-1-1
+Li-Lítio-elements/li.png-3-6.941-2-1
+Na-Sódio-elements/na.png-11-23.00-3-1
+K-Potássio-elements/k.png-19-39.10-4-1
+Rb-Rubídio-elements/rb.png-37-85.47-5-1
+Cs-Césio-elements/cs.png-55-132.9-6-1
+Fr-Frâncio-elements/fr.png-87-223.00-7-1

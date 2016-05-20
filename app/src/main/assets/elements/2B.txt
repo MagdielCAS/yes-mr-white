@@ -1,0 +1,3 @@
+﻿Zn-Zinco-elements/zn.png-30-65.38-4-12
+Cd-Cádmio-elements/cd.png-48-112.4-5-12
+Hg-Mercúrio-elements/hg.png-80-200.6-6-12

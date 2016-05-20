@@ -1,0 +1,6 @@
+﻿Be-Berílio-elements/be.png-4-9.012-2-2
+Mg-Magnésio-elements/mg.png-12-24.30-3-2
+Ca-Cálcio-elements/ca.png-20-40.08-4-2
+Sr-Estrôncio-elements/sr.png-38-87.62-5-2
+Ba-Bário-elements/ba.png-56-137.3-6-2
+Ra-Rádio-elements/ra.png-88-226.00-7-2

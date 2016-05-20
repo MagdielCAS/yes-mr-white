@@ -1,0 +1,6 @@
+﻿He-Hélio-elements/he.png-2-4.003-1-18
+Ne-Neônio-elements/ne.png-10-20.18-2-18
+Ar-Argônio-elements/ar.png-18-39.95-3-18
+Kr-Criptônio-elements/kr.png-36-83.80-4-18
+Xe-Xenônio-elements/xe.png-54-131.3-5-18
+Rn-Radônio-elements/rn.png-86-222.0-6-18

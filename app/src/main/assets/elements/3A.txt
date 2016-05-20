@@ -1,0 +1,5 @@
+﻿B-Boro-elements/b.png-5-10.81-2-13
+Al-Alumínio-elements/al.png-13-26.98-3-13
+Ga-Gálio-elements/ga.png-31-69.72-4-13
+In-Índio-elements/in.png-49-114.8-5-13
+Tl-Tálio-elements/tl.png-81-204.4-6-13

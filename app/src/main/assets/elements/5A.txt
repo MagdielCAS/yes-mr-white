@@ -1,0 +1,5 @@
+﻿N-Nitrogênio-elements/n.png-7-14.01-2-15
+P-Fósforo-elements/p.png-15-30.97-3-15
+As-Arsênio-elements/as.png-33-74.92-4-15
+Sb-Antimônio-elements/sb.png-51-121.7-5-15
+Bi-Bismuto-elements/bi.png-83-209.0-6-15

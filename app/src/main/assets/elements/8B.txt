@@ -1,0 +1,9 @@
+﻿Fe-Ferro-elements/fe.png-26-55.85-4-8
+Ru-Rutênio-elements/ru.png-44-101.1-5-8
+Os-Ósmio-elements/os.png-76-190.2-6-8
+Co-Cobalto-elements/co.png-27-58.93-4-9
+Rh-Ródio-elements/rh.png-45-102.9-5-9
+Ir-Irídio-elements/ir.png-77-192.2-6-9
+Ni-Níquel-elements/ni.png-28-58.69-4-10
+Pd-Paládio-elements/pd.png-46-106.4-5-10
+Pt-Platina-elements/pt.png-78-195.1-6-10

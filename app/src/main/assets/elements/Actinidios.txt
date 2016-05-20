@@ -1,0 +1,15 @@
+﻿Ac-Actínio-elements/ac.png-89-227.0-7-3
+Th-Tório-elements/th.png-90-232.0-7-3
+Pa-Protactínio-elements/pa.png-91-231.0-7-3
+U-Urânio-elements/u.png-92-238.0-7-3
+Np-Neptúnio-elements/np.png-93-237.0-7-3
+Pu-Plutônio-elements/pu.png-94-244.0-7-3
+Am-Amerício-elements/am.png-95-243.0-7-3
+Cm-Cúrio-elements/cm.png-96-247.0-7-3
+Bk-Berkélio-elements/bk.png-97-247.0-7-3
+Cf-Califórnio-elements/cf.png-98-251.0-7-3
+Es-Einstênio-elements/es.png-99-252.0-7-3
+Fm-Férmio-elements/fm.png-100-257.0-7-3
+Md-Mendelévio-elements/md.png-101-258.0-7-3
+No-Nobélio-elements/no.png-102-259.0-7-3
+Lr-Laurêncio-elements/lr.png-103-260.0-7-3

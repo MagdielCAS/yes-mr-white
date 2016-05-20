@@ -1,0 +1,10 @@
+﻿H-Hidrogênio-elements/h.png-1-1.008-1-1
+He-Hélio-elements/he.png-2-4.003-1-18
+Li-Lítio-elements/li.png-3-6.941-2-1
+Be-Berílio-elements/be.png-4-9.012-2-2
+B-Boro-elements/b.png-5-10.81-2-13
+C-Carbono-elements/c.png-6-12.01-2-14
+N-Nitrogênio-elements/n.png-7-14.01-2-15
+O-Oxigênio-elements/o.png-8-16.00-2-16
+F-Flúor-elements/f.png-9-19.00-2-17
+Ne-Neônio-elements/ne.png-10-20.18-2-18

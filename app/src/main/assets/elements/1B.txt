@@ -1,0 +1,3 @@
+﻿Cu-Cobre-elements/cu.png-29-63.55-4-11
+Ag-Prata-elements/ag.png-47-107.9-5-11
+Au-Ouro-elements/au.png-79-197.0-6-11

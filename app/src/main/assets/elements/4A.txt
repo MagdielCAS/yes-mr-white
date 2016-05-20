@@ -1,0 +1,5 @@
+﻿C-Carbono-elements/c.png-6-12.01-2-14
+Si-Silício-elements/si.png-14-28.08-3-14
+Ge-Germânio-elements/ge.png-32-72.59-4-14
+Sn-Estanho-elements/sn.png-50-118.7-5-14
+Pb-Chumbo-elements/pb.png-82-207.2-6-14
