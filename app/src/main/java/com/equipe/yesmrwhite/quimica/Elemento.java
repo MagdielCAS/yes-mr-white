@@ -1,4 +1,4 @@
-package com.equipe.yesmrwhite.quimica;
+package aulatopicos.jogocanhao;
 
 /**
  * Created by magdi on 20/05/2016.
@@ -77,9 +77,10 @@ public class Elemento {
         this.coluna = coluna;
     }
 
-    public Elemento(){}
+    public Elemento() {
+    }
 
-    public Elemento(String familia,String simbolo, String nome, String imagem, String numeroAtomico, String massaAtomica, String linha, String coluna ){
+    public Elemento(String familia, String simbolo, String nome, String imagem, String numeroAtomico, String massaAtomica, String linha, String coluna) {
         setFamilia(familia);
         setSimbolo(simbolo);
         setNome(nome);
@@ -89,4 +90,81 @@ public class Elemento {
         setLinha(linha);
         setColuna(coluna);
     }
+
+    public String getClassificacao() {
+        int linha = Integer.parseInt(getLinha());
+        int coluna = Integer.parseInt(getColuna());
+        if (getFamilia().equals("Lantanidios")) {
+            return "Metal/Lantanóide";
+        } else {
+            if (getFamilia().equals("Actinidios")) {
+                return "Metal/Actinóide";
+            } else {
+                if (getFamilia().equals("GasesNobres")) {
+                    return "Não-Metal/Gás Nobre";
+                } else {
+                    if (linha >= 2) {
+                        if (coluna == 1) {
+                            return "Metal/Alcalino";
+                        } else {
+                            if (coluna == 2) {
+                                return "Metal/Alcalino-terroso";
+                            } else {
+                                if (coluna <= 12) {
+                                    return "Metal/Metal de Transição";
+                                } else {
+                                    switch (coluna) {
+                                        case 13:
+                                            if (linha >= 3) {
+                                                return "Metal/Metal de pós-transição";
+                                            } else {
+                                                return "Semimetal";
+                                            }
+                                        case 14:
+                                            if (linha >= 5) {
+                                                return "Metal/Metal de pós-transição";
+                                            } else if (linha >= 3) {
+                                                return "Semimetal";
+                                            } else {
+                                                return "Não-Metal/Outro Não-Metal";
+                                            }
+                                        case 15:
+                                            if (linha >= 6) {
+                                                return "Metal/Metal de pós-transição";
+                                            } else if (linha >= 4) {
+                                                return "Semimetal";
+                                            } else {
+                                                return "Não-Metal/Outro Não-Metal";
+                                            }
+                                        case 16:
+                                            if (linha >= 7) {
+                                                return "Metal/Metal de pós-transição";
+                                            } else if (linha >= 5) {
+                                                return "Semimetal";
+                                            } else {
+                                                return "Não-Metal/Outro Não-Metal";
+                                            }
+                                        case 17:
+                                            return "Não-Metal/Halogêneo";
+                                        default:
+                                            return null;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public String getTipo(){
+        return getClassificacao().split("/")[0];
+    }
+    public String getSubTipo(){
+        String[] sub = getClassificacao().split("/");
+        return sub.length==1?sub[0]:sub[1];
+    }
 }
+
