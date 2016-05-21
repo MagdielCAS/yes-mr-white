@@ -91,22 +91,24 @@ public class TabelaPeriodica {
         return null;
     }
 
-    public Elemento getElementByClassTipo(String c){
+    public List<Elemento> getElementByClassTipo(String c){
         //Os nomes tem acento, atentar a isso quando botar o nome
+        List<Elemento> elementos = new ArrayList<Elemento>();
         for (Elemento elemento:this.tabelaPeriodica) {
             if(elemento.getTipo().equals(c)){
-                return elemento;
+                elementos.add(elemento);
             }
         }
-        return null;
+        return elementos;
     }
-    public Elemento getElementByClassSubTipo(String c){
+    public List<Elemento> getElementByClassSubTipo(String c){
         //Os nomes tem acento, atentar a isso quando botar o nome
+        List<Elemento> elementos = new ArrayList<Elemento>();
         for (Elemento elemento:this.tabelaPeriodica) {
             if(elemento.getSubTipo().equals(c)){
-                return elemento;
+                elementos.add(elemento);
             }
         }
-        return null;
+        return elementos;
     }
 }
