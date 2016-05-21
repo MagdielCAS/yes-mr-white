@@ -39,9 +39,9 @@ public class MainActivityQuiz extends Activity
     // String used when logging error messages
     private static final String TAG = "FlagQuizGame Activity";
 
-    //private List<Elemento> elementos;
-    //private TabelaPeriodica tabela = new TabelaPeriodica(this);
-    // elementos = tabela.getTabela();
+    private List<Elemento> elementos;
+    private TabelaPeriodica tabela = new TabelaPeriodica(this);
+    //elementos = tabela.
 
     private List<String> fileNameList; // flag file names
     private List<String> quizCountriesList; // names of countries in quiz
