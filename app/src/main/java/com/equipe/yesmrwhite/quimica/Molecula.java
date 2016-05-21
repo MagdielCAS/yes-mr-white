@@ -9,7 +9,6 @@ public class Molecula {
     private List<Elemento> molecula;
     private String nome;
 
-
     public List<Elemento> getMolecula() {
         return molecula;
     }

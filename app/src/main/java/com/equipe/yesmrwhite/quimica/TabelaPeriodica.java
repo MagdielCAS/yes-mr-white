@@ -90,4 +90,23 @@ public class TabelaPeriodica {
         }
         return null;
     }
+
+    public Elemento getElementByClassTipo(String c){
+        //Os nomes tem acento, atentar a isso quando botar o nome
+        for (Elemento elemento:this.tabelaPeriodica) {
+            if(elemento.getTipo().equals(c)){
+                return elemento;
+            }
+        }
+        return null;
+    }
+    public Elemento getElementByClassSubTipo(String c){
+        //Os nomes tem acento, atentar a isso quando botar o nome
+        for (Elemento elemento:this.tabelaPeriodica) {
+            if(elemento.getSubTipo().equals(c)){
+                return elemento;
+            }
+        }
+        return null;
+    }
 }
