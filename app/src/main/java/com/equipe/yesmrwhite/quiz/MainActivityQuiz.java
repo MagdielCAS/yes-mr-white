@@ -1,7 +1,5 @@
 package com.equipe.yesmrwhite.quiz;
 
-import com.equipe.yesmrwhite.quimica.Elemento;
-import com.equipe.yesmrwhite.quimica.TabelaPeriodica;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -32,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import com.equipe.yesmrwhite.quimica.Elemento;
+import com.equipe.yesmrwhite.quimica.TabelaPeriodica;
 import com.example.syllas.yesmrwhite.R;
 
 public class MainActivityQuiz extends Activity
@@ -40,8 +40,8 @@ public class MainActivityQuiz extends Activity
     private static final String TAG = "FlagQuizGame Activity";
 
     private List<Elemento> elementos;
-    private TabelaPeriodica tabela = new TabelaPeriodica(this);
-    //elementos = tabela.
+    private TabelaPeriodica tabela;
+
 
     private List<String> fileNameList; // flag file names
     private List<String> quizCountriesList; // names of countries in quiz
@@ -66,6 +66,18 @@ public class MainActivityQuiz extends Activity
         super.onCreate(savedInstanceState); // call the superclass's method
         setContentView(R.layout.main); // inflate the GUI
 
+
+        //TESTES ------------------------------------------
+        tabela = new TabelaPeriodica(getApplicationContext());
+        elementos = tabela.getTabela(); //Recupera toda a tabela periodica
+        Log.i(TAG, elementos.get(0).getImagem());
+        Log.i(TAG, elementos.get(1).getClassificacao());
+        List<Elemento> metais;
+        metais = getElementsByClassificacao(elementos,"Metal/Lantanóide");
+        for(int i=0; i<metais.size(); i++){
+            Log.i(TAG, metais.get(i).getNome());
+        }
+        //TESTES ------------------------------------------
 
         fileNameList = new ArrayList<String>(); // list of image file names
         quizCountriesList = new ArrayList<String>(); // flags in this quiz
@@ -103,11 +115,24 @@ public class MainActivityQuiz extends Activity
         resetQuiz(); // start a new quiz
     } // end method onCreate
 
+
     //Chama configurações
     public void config(View view){
         MainActivityQuiz.this.openOptionsMenu();
     }
 
+    //Returna uma lista de elementos que possuem a classificação indicada
+    public List<Elemento> getElementsByClassificacao(List<Elemento> lista, String Classificacao){
+        int size = lista.size();
+        List<Elemento> elementosClassificados = null;
+        for (int i=0; i<size; i++){
+            //if(lista.get(i).getClassificacao().equals(Classificacao)){
+                //elementosClassificados.add(lista.get(i));
+                Log.i(TAG,"TESTE".concat(lista.get(i).getNome()));
+            //}
+        }
+        return lista;
+    }
 
     // set up and start the next quiz
     private void resetQuiz()

@@ -38,7 +38,7 @@ public class TabelaPeriodica {
                 while ((lstrlinha = br.readLine()) != null) {
                     splitedLine = lstrlinha.split("-");
                     tabelaPeriodica.add(new Elemento(colum,splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3],splitedLine[4],splitedLine[5],splitedLine[6]));
-                    System.out.println(tabelaPeriodica.get(i).getNome());
+                    //System.out.println(tabelaPeriodica.get(i).getNome());
                     i++;
                 }
                 arq.close();
