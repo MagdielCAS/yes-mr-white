@@ -118,13 +118,13 @@ public class Elemento {
                                             if (linha >= 3) {
                                                 return "Metal/Metal de pós-transição";
                                             } else {
-                                                return "Semimetal";
+                                                return "Semimetal/Semimetal";
                                             }
                                         case 14:
                                             if (linha >= 5) {
                                                 return "Metal/Metal de pós-transição";
                                             } else if (linha >= 3) {
-                                                return "Semimetal";
+                                                return "Semimetal/Semimetal";
                                             } else {
                                                 return "Não-Metal/Outro Não-Metal";
                                             }
@@ -132,7 +132,7 @@ public class Elemento {
                                             if (linha >= 6) {
                                                 return "Metal/Metal de pós-transição";
                                             } else if (linha >= 4) {
-                                                return "Semimetal";
+                                                return "Semimetal/Semimetal";
                                             } else {
                                                 return "Não-Metal/Outro Não-Metal";
                                             }
@@ -140,7 +140,7 @@ public class Elemento {
                                             if (linha >= 7) {
                                                 return "Metal/Metal de pós-transição";
                                             } else if (linha >= 5) {
-                                                return "Semimetal";
+                                                return "Semimetal/Semimetal";
                                             } else {
                                                 return "Não-Metal/Outro Não-Metal";
                                             }
