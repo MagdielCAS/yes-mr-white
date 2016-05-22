@@ -15,7 +15,7 @@ import java.util.List;
 public class TabelaPeriodica {
     private List<Elemento> tabelaPeriodica;
     private final static String[] colunas = {"1A","2A","3B","4B","5B","6B","7B","8B","1B","2B","3A","4A","5A","6A","7A","GasesNobres","Actinidios","Lantanidios"};
-    private String[] splitedLine;
+
 
     public TabelaPeriodica(List<Elemento> tabela){
         this.tabelaPeriodica = tabela;
@@ -24,6 +24,7 @@ public class TabelaPeriodica {
     public TabelaPeriodica(Context context) {
         InputStream arq;
         String lstrlinha;
+        String[] splitedLine;
         AssetManager assetManager = context.getResources().getAssets();
         tabelaPeriodica = new ArrayList<Elemento>();
 

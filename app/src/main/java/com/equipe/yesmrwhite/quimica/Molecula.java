@@ -6,15 +6,16 @@ import java.util.List;
  * Created by magdi on 20/05/2016.
  */
 public class Molecula {
-    private List<Elemento> molecula;
+    private List<String> elementosMolecula;
     private String nome;
+    private String molecula;
 
-    public List<Elemento> getMolecula() {
-        return molecula;
+    public List<String> getElementosMolecula() {
+        return elementosMolecula;
     }
 
-    public void setMolecula(List<Elemento> molecula) {
-        this.molecula = molecula;
+    public void setElementosMolecula(List<String> elementosMolecula) {
+        this.elementosMolecula = elementosMolecula;
     }
 
     public String getNome() {
@@ -23,5 +24,13 @@ public class Molecula {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getMolecula() {
+        return molecula;
+    }
+
+    public void setMolecula(String molecula) {
+        this.molecula = molecula;
     }
 }
