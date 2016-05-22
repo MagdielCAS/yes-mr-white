@@ -39,7 +39,7 @@ public class TabelaPeriodica {
                 while ((lstrlinha = br.readLine()) != null) {
                     splitedLine = lstrlinha.split("-");
                     tabelaPeriodica.add(new Elemento(colum,splitedLine[0],splitedLine[1],splitedLine[2],splitedLine[3],splitedLine[4],splitedLine[5],splitedLine[6]));
-                    //System.out.println(tabelaPeriodica.get(i).getNome());
+                    //System.out.println("Contrutor: ".concat(tabelaPeriodica.get(i).getNome()));
                     i++;
                 }
                 arq.close();
@@ -96,7 +96,7 @@ public class TabelaPeriodica {
         //Os nomes tem acento, atentar a isso quando botar o nome
         List<Elemento> elementos = new ArrayList<Elemento>();
         for (Elemento elemento:this.tabelaPeriodica) {
-            if(elemento.getTipo().equals(c)){
+            if(elemento.getTipo() != null && elemento.getTipo().equals(c)){
                 elementos.add(elemento);
             }
         }

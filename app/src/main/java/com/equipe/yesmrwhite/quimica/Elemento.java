@@ -164,7 +164,10 @@ public class Elemento {
     }
 
     public String getTipo(){
-        return getClassificacao().split("/")[0];
+        if(getClassificacao()!=null){
+            return getClassificacao().split("/")[0];
+        }
+        return null;
     }
     public String getSubTipo(){
         String[] sub = getClassificacao().split("/");

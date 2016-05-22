@@ -5,22 +5,32 @@
    <string name="win">Você venceu!</string>
    <string name="lose">Você perdeu!</string>
    <string name="time_remaining_format">Tempo restante: %.1f segundos</string>
-   <string name="app_name">FlagQuizGame</string>
-   <string name="choices">Select Number of Choices</string>
-   <string name="correct">correct</string>
-   <string name="guess_country">Guess the Country</string>
-   <string name="guesses">guesses</string>
-   <string name="incorrect_answer">Incorrect!</string>
-   <string name="more_regions_title">More Regions Required</string>
-   <string name="more_regions_message">There are not enough countries in 
-      the selected regions. Please select more regions.</string>
-   <string name="of">of</string>
+   <string name="app_name">Yes, Mr. White</string>
+   <string name="choices">Selecione o número de opções</string>
+   <string name="correct">certo</string>
+   <string name="guess_country">Pergunta aqui!!</string>
+   <string name="pergunta1">Qual o nome do elemento acima?</string>
+   <string name="pergunta2">Qual a familia do elemento acima?</string>
+   <string name="pergunta3">Qual o sub-tipo do elemento acima?</string>
+   <string name="guesses">suposições</string>
+   <string name="incorrect_answer">Errado!</string>
+   <string name="more_regions_title">Requer mais tipos</string>
+   <string name="more_regions_message">Não há número suficiente de elementos nos tipos selecionados. Por favor selecione mais tipos.</string>
+   <string name="of">de</string>
    <string name="ok">OK</string>
-   <string name="question">Question</string>
-   <string name="quiz_title">Ten Question Flag Quiz</string>
-   <string name="regions">Select Regions</string>
+   <string name="question">Questão</string>
+   <string name="quiz_title">Quiz de Química</string>
+   <string name="regions">Selecione o Grupo</string>
    <string name="sair">Sair</string>
-   <string name="reset_quiz">Reset Quiz</string>    
+   <string name="reset_quiz">Reiniciar Quiz</string>
+
+
+   <string-array name="elementsList">
+      <item>Metal</item>
+      <item>Não-Metal</item>
+      <item>Semimetal</item>
+   </string-array>
+
    <string-array name="regionsList">
       <item>Africa</item>
       <item>Asia</item>
@@ -29,6 +39,7 @@
       <item>Oceania</item>
       <item>South_America</item>
    </string-array>
+
    <string-array name="guessesList">
       <item>3</item>
       <item>6</item>
