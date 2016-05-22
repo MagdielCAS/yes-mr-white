@@ -45,7 +45,7 @@ public class MainActivityQuiz extends Activity
     private  List<Elemento> elementosJogada;
     private Map<String, Boolean> elementsMap;
     Elemento nextElement;
-
+    int perguntaRandom;
 
     private List<String> fileNameList; // flag file names
     private List<String> quizCountriesList; // names of countries in quiz
@@ -60,6 +60,7 @@ public class MainActivityQuiz extends Activity
 
     private TextView answerTextView; // displays Correct! or Incorrect!
     private TextView questionNumberTextView; // shows current question #
+    private TextView perguntaTextView;
     private ImageView flagImageView; // displays a flag
     private TableLayout buttonTableLayout; // table of answer Buttons
 
@@ -284,7 +285,28 @@ public class MainActivityQuiz extends Activity
         //String nextImageName = quizCountriesList.remove(0);
         //correctAnswer = nextImageName; // update the correct answer
         nextElement = elementosJogada.remove(0);
-        correctAnswer = nextElement.getNome(); //MUDAR DEPENDENDO DA PERGUNTA.
+
+        perguntaRandom = random.nextInt(3);
+        switch (perguntaRandom){
+            case 0:
+                correctAnswer = nextElement.getNome();
+                perguntaTextView = (TextView) findViewById(R.id.guessCountryTextView);
+                perguntaTextView.setText(R.string.pergunta1);
+                break;
+            case 1:
+                correctAnswer = nextElement.getFamilia();
+                perguntaTextView = (TextView) findViewById(R.id.guessCountryTextView);
+                perguntaTextView.setText(R.string.pergunta2);
+                break;
+            case 2:
+                correctAnswer = nextElement.getSubTipo();
+                perguntaTextView = (TextView) findViewById(R.id.guessCountryTextView);
+                perguntaTextView.setText(R.string.pergunta3);
+                break;
+        }
+
+
+        //correctAnswer = nextElement.getNome(); //MUDAR DEPENDENDO DA PERGUNTA.
 
         answerTextView.setText(""); // clear answerTextView
 
@@ -346,7 +368,18 @@ public class MainActivityQuiz extends Activity
                 // get country name and set it as newGuessButton's text
                 //String fileName = fileNameList.get((row * 3) + column);
                 //newGuessButton.setText(getCountryName(fileName));
-                newGuessButton.setText(elementos.get((row*3)+column).getNome());
+                switch (perguntaRandom){
+                    case 0:
+                        newGuessButton.setText(elementos.get((row*3)+column).getNome());
+                        break;
+                    case 1:
+                        newGuessButton.setText(elementos.get((row*3)+column).getFamilia());
+                        break;
+                    case 2:
+                        newGuessButton.setText(elementos.get((row*3)+column).getSubTipo());
+                        break;
+                }
+                //newGuessButton.setText(elementos.get((row*3)+column).getNome());
 
 
                 // register answerButtonListener to respond to button clicks
@@ -360,7 +393,18 @@ public class MainActivityQuiz extends Activity
         int column = random.nextInt(3); // pick random column
         TableRow randomTableRow = getTableRow(row); // get the TableRow
         //String countryName = getCountryName(correctAnswer);
-        ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getNome());
+        switch (perguntaRandom){
+            case 0:
+                ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getNome());
+                break;
+            case 1:
+                ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getFamilia());
+                break;
+            case 2:
+                ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getSubTipo());
+                break;
+        }
+        //((Button)randomTableRow.getChildAt(column)).setText(nextElement.getNome());
     } // end method loadNextElement
 
 
@@ -457,18 +501,24 @@ public class MainActivityQuiz extends Activity
         return (TableRow) buttonTableLayout.getChildAt(row);
     } // end method getTableRow
 
-    // parses the country flag file name and returns the country name
-    private String getCountryName(String name)
-    {
-        return name.substring(name.indexOf('-') + 1).replace('_', ' ');
-    } // end method getCountryName
-
     // called when the user selects an answer
     private void submitGuess(Button guessButton)
     {
         String guess = guessButton.getText().toString();
         //String answer = getCountryName(correctAnswer);
-        String answer = nextElement.getNome();
+        String answer = "";
+        switch (perguntaRandom){
+            case 0:
+                answer = nextElement.getNome();
+                break;
+            case 1:
+                answer = nextElement.getFamilia();
+                break;
+            case 2:
+                answer = nextElement.getSubTipo();
+                break;
+        }
+        //String answer = nextElement.getNome();
         ++totalGuesses; // increment the number of guesses the user has made
 
         // if the guess is correct

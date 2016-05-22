@@ -2,9 +2,12 @@
 <resources>
    <string name="app_name">Yes, Mr. White</string>
    <string name="choices">Selecione o número de opções</string>
-   <string name="correct">Correto</string>
+   <string name="correct">certo</string>
    <string name="guess_country">Pergunta aqui!!</string>
-   <string name="guesses">guesses</string>
+   <string name="pergunta1">Qual o nome do elemento acima?</string>
+   <string name="pergunta2">Qual a familia do elemento acima?</string>
+   <string name="pergunta3">Qual o sub-tipo do elemento acima?</string>
+   <string name="guesses">suposições</string>
    <string name="incorrect_answer">Errado!</string>
    <string name="more_regions_title">Requer mais tipos</string>
    <string name="more_regions_message">Não há número suficiente de elementos nos tipos selecionados. Por favor selecione mais tipos.</string>
