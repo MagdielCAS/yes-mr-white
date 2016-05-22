@@ -105,6 +105,9 @@ public class MainActivityQuiz extends Activity
                 getResources().getString(R.string.question) + " 1 " +
                         getResources().getString(R.string.of) + " 10");
 
+
+        //resetQuiz(); // start a new quiz
+
         myResetQuiz(); // start a new quiz
     } // end method onCreate
 
