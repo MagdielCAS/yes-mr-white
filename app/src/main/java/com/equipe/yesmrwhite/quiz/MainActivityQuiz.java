@@ -69,8 +69,8 @@ public class MainActivityQuiz extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState); // call the superclass's method
-        setContentView(R.layout.main); // inflate the GUI
-
+        setContentView(R.layout.activity_main); // inflate the GUI
+/*
 
         //TESTES ------------------------------------------
         //tabela = new TabelaPeriodica(getApplicationContext());
@@ -149,6 +149,7 @@ public class MainActivityQuiz extends Activity
         //resetQuiz(); // start a new quiz
 
         myResetQuiz(); // start a new quiz
+        */
     } // end method onCreate
 
 
