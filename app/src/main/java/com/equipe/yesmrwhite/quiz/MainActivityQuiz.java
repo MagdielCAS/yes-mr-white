@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -30,6 +31,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.equipe.yesmrwhite.main.MainActivity;
 import com.equipe.yesmrwhite.quimica.Elemento;
 import com.equipe.yesmrwhite.quimica.TabelaPeriodica;
 import com.example.syllas.yesmrwhite.R;
@@ -66,7 +69,7 @@ public class MainActivityQuiz extends Activity
     {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_quiz);
 
         tabela = new TabelaPeriodica(getApplicationContext());
         elementos = tabela.getTabela(); //Recupera toda a tabela periodica
@@ -410,8 +413,15 @@ public class MainActivityQuiz extends Activity
                         getResources().getString(R.string.correct)));
 
                 builder.setCancelable(false);
-
                 // add "Reset Quiz" Button
+                builder.setNeutralButton("Voltar",new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                startActivity(new Intent(getBaseContext(), MainActivity.class));
+                            } // end method onClick
+                        }
+                ); // end anonymous inner class);
                 builder.setPositiveButton(R.string.reset_quiz,
                         new DialogInterface.OnClickListener()
                         {
@@ -577,6 +587,8 @@ public class MainActivityQuiz extends Activity
 
             case SAIR_MENU_ID:
                 //Cod. Sair aqui (VOLTAR PRA ACTIVITY PRINCIPAL)
+                startActivity(new Intent(this, MainActivity.class));
+                this.finishAfterTransition();
                 Log.i(TAG, "onOptionsItemSelected: saiuuuuuuu");
         } // end switch
 

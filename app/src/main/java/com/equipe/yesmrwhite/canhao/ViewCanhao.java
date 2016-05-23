@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,11 +18,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.equipe.yesmrwhite.quimica.Elemento;
+import com.equipe.yesmrwhite.main.MainActivity;
 import com.equipe.yesmrwhite.quimica.ElementoMolecula;
 import com.equipe.yesmrwhite.quimica.ListaMoleculas;
 import com.equipe.yesmrwhite.quimica.Molecula;
-import com.equipe.yesmrwhite.quimica.TabelaPeriodica;
 import com.example.syllas.yesmrwhite.R;
 
 import java.util.ArrayList;
@@ -330,6 +330,14 @@ public class ViewCanhao extends SurfaceView implements SurfaceHolder.Callback {
                 newGame();
             }
         });
+        dialogBuilder.setNeutralButton("Voltar",new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        activity.startActivity(new Intent(activity, MainActivity.class));;
+                    } // end method onClick
+                }
+        );
         activity.runOnUiThread(
                 new Runnable() {
                     public void run() {
