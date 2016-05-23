@@ -46,90 +46,50 @@ public class MainActivityQuiz extends Activity
     private Map<String, Boolean> elementsMap;
     Elemento nextElement;
     int perguntaRandom;
+    private String correctAnswer;
+    private int totalGuesses;
+    private int correctAnswers;
+    private int guessRows;
+    private Random random;
+    private Handler handler;
+    private Animation shakeAnimation;
 
-    private List<String> fileNameList; // flag file names
-    private List<String> quizCountriesList; // names of countries in quiz
-    private Map<String, Boolean> regionsMap; // which regions are enabled
-    private String correctAnswer; // correct country for the current flag
-    private int totalGuesses; // number of guesses made
-    private int correctAnswers; // number of correct guesses
-    private int guessRows; // number of rows displaying choices
-    private Random random; // random number generator
-    private Handler handler; // used to delay loading next flag
-    private Animation shakeAnimation; // animation for incorrect guess
-
-    private TextView answerTextView; // displays Correct! or Incorrect!
-    private TextView questionNumberTextView; // shows current question #
+    private TextView answerTextView;
+    private TextView questionNumberTextView;
     private TextView perguntaTextView;
-    private ImageView flagImageView; // displays a flag
-    private TableLayout buttonTableLayout; // table of answer Buttons
+    private ImageView flagImageView;
+    private TableLayout buttonTableLayout;
 
-    // called when the activity is first created
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState); // call the superclass's method
-        setContentView(R.layout.activity_main); // inflate the GUI
-/*
 
-        //TESTES ------------------------------------------
-        //tabela = new TabelaPeriodica(getApplicationContext());
-        //elementos = tabela.getTabela(); //Recupera toda a tabela periodica
-        //Log.i(TAG, elementos.get(0).getImagem());
-        //Log.i(TAG, elementos.get(1).getClassificacao());
-        //List<Elemento> metais;
-
-        //metais = tabela.getElementByClassTipo("Não-Metal");
-        //if(metais != null){
-        //    for(int i=0; i<metais.size(); i++){
-        //        Log.i(TAG, "Não-Metal img: ".concat(metais.get(i).getImagem()));
-        //    }
-        //}else{
-        //    Log.i(TAG, "Retornou NULL.");
-        //}
-        //TESTES ------------------------------------------
-        //MEUS PARAMETRO ------------------------------------------
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
         tabela = new TabelaPeriodica(getApplicationContext());
         elementos = tabela.getTabela(); //Recupera toda a tabela periodica
         elementosEscolhidos = new ArrayList<Elemento>();
         elementosJogada = new ArrayList<Elemento>();
         elementsMap = new HashMap<String, Boolean>();
+        guessRows = 1; // 1 linha de escolhas padrao
+        random = new Random(); // gerador de num aleatorio
+        handler = new Handler();
 
-        //MEUS PARAMETRO ------------------------------------------
-
-
-        fileNameList = new ArrayList<String>(); // list of image file names
-        quizCountriesList = new ArrayList<String>(); // flags in this quiz
-        regionsMap = new HashMap<String, Boolean>(); // HashMap of regions
-        guessRows = 1; // default to one row of choices
-        random = new Random(); // initialize the random number generator
-        handler = new Handler(); // used to perform delayed operations
-
-        // load the shake animation that's used for incorrect answers
+        // carrega a animação da resp incorreta
         shakeAnimation =
                 AnimationUtils.loadAnimation(this, R.anim.incorrect_shake);
-        shakeAnimation.setRepeatCount(3); // animation repeats 3 times
-
-        // get array of world regions from strings.xml
-        String[] regionNames =
-                getResources().getStringArray(R.array.regionsList);
+        shakeAnimation.setRepeatCount(3); //repete 3 vezes
 
 
-        //----------MEUS PARAMETRO ------------------------------------------
+
         String[] classeNames =
                 getResources().getStringArray(R.array.elementsList);
-        //---------MEUS PARAMETRO ------------------------------------------
 
 
-        // by default, countries are chosen from all regions
-        for (String region : regionNames )
-            regionsMap.put(region, true);
-
-        //---------MEUS PARAMETRO ------------------------------------------
         for (String classe : classeNames )
             elementsMap.put(classe, true);
-        //---------MEUS PARAMETRO ------------------------------------------
 
 
         // get references to GUI components
@@ -149,7 +109,7 @@ public class MainActivityQuiz extends Activity
         //resetQuiz(); // start a new quiz
 
         myResetQuiz(); // start a new quiz
-        */
+
     } // end method onCreate
 
 
@@ -171,10 +131,9 @@ public class MainActivityQuiz extends Activity
 
         Set<String> classes = elementsMap.keySet(); // get Set of regions
 
-        // loop through each region
+        // loob para todas as classes
         for (String classe : classes)
         {
-            System.out.println("Calsse: ".concat(classe));
             if (elementsMap.get(classe)) // if classe marcada
             {
                 //Adiciona todos os elementos da classe marcada.
@@ -187,22 +146,48 @@ public class MainActivityQuiz extends Activity
         } // end for
 
 
-        correctAnswers = 0; // reset the number of correct answers made
-        totalGuesses = 0; // reset the total number of guesses the user made
-        //quizCountriesList.clear(); // clear prior list of quiz countries
+        correctAnswers = 0; // reseta o numero de resp correta
+        totalGuesses = 0; // reseta o numero de opçoes
 
-        // add 10 random file names to the quizCountriesList
+        // adiciona 10 elementos aleatorios no elementosEscolhidos
         int elementCounter = 1;
         int numberOfElements = elementosEscolhidos.size();
 
+        //Se não tiver elementos suficiente reseta e bota todos os elementos
+        //GAMBIARRA - Mudar depois.
+        if (numberOfElements < 10){
+            elementosEscolhidos.clear();
+
+            String[] classeNames =
+                    getResources().getStringArray(R.array.elementsList);
+
+            for (String classe : classeNames )
+                elementsMap.put(classe, true);
+
+
+            // loob para todas as classes
+            for (String classe : classes)
+            {
+                System.out.println("Calsse: ".concat(classe));
+                if (elementsMap.get(classe)) // if classe marcada
+                {
+                    //Adiciona todos os elementos da classe marcada.
+
+                    for(int i=0; i< tabela.getElementByClassTipo(classe).size(); i++){
+                        elementosEscolhidos.add(tabela.getElementByClassTipo(classe).get(i));
+                    }
+
+                } // end if
+            } // end for
+            numberOfElements = elementosEscolhidos.size();
+        }
+        //FIM - GAMBIARRA
 
         while (elementCounter <= 10)
         {
             int randomIndex = random.nextInt(numberOfElements); // random index
 
-            // get the random file name
-            //String fileName = fileNameList.get(randomIndex);
-
+            // pega um elemento aleatorio
             Elemento elementRandom = elementosEscolhidos.get(randomIndex);
 
             // if the region is enabled and it hasn't already been chosen
@@ -213,81 +198,15 @@ public class MainActivityQuiz extends Activity
             } // end if
         } // end while
 
-        loadNextElement(); // start the quiz by loading the first flag
+        loadNextElement(); // carrega o primeiro elemento
     } // My resetQuiz
 
 
 
-
-    /*
-    // set up and start the next quiz
-    private void resetQuiz()
-    {
-        // use the AssetManager to get the image flag
-        // file names for only the enabled regions
-        AssetManager assets = getAssets(); // get the app's AssetManager
-        fileNameList.clear(); // empty the list
-
-        //---------MEUS PARAMETRO ------------------------------------------
-        elementos.clear();
-        //---------MEUS PARAMETRO ------------------------------------------
-
-        try
-        {
-            Set<String> regions = regionsMap.keySet(); // get Set of regions
-
-
-            // loop through each region
-            for (String region : regions)
-            {
-                if (regionsMap.get(region)) // if region is enabled
-                {
-                    // get a list of all flag image files in this region
-                    String[] paths = assets.list(region);
-
-                    for (String path : paths)
-                        fileNameList.add(path.replace(".png", ""));
-                } // end if
-            } // end for
-        } // end try
-        catch (IOException e)
-        {
-            Log.e(TAG, "Error loading image file names", e);
-        } // end catch
-
-        correctAnswers = 0; // reset the number of correct answers made
-        totalGuesses = 0; // reset the total number of guesses the user made
-        quizCountriesList.clear(); // clear prior list of quiz countries
-
-        // add 10 random file names to the quizCountriesList
-        int flagCounter = 1;
-        int numberOfFlags = fileNameList.size(); // get number of flags
-
-        while (flagCounter <= 10)
-        {
-            int randomIndex = random.nextInt(numberOfFlags); // random index
-
-            // get the random file name
-            String fileName = fileNameList.get(randomIndex);
-
-            // if the region is enabled and it hasn't already been chosen
-            if (!quizCountriesList.contains(fileName))
-            {
-                quizCountriesList.add(fileName); // add the file to the list
-                ++flagCounter;
-            } // end if
-        } // end while
-
-        loadNextFlag(); // start the quiz by loading the first flag
-    } // end method resetQuiz
-*/
-
-    // after the user guesses a correct Element, load the next Element
+    // correga o proximo elemento
     private void loadNextElement()
     {
-        // get file name of the next flag and remove it from the list
-        //String nextImageName = quizCountriesList.remove(0);
-        //correctAnswer = nextImageName; // update the correct answer
+        // pega o proxima elemento e tira ele da lista
         nextElement = elementosJogada.remove(0);
 
         perguntaRandom = random.nextInt(3);
@@ -310,19 +229,14 @@ public class MainActivityQuiz extends Activity
         }
 
 
-        //correctAnswer = nextElement.getNome(); //MUDAR DEPENDENDO DA PERGUNTA.
 
-        answerTextView.setText(""); // clear answerTextView
+        answerTextView.setText(""); // limpa answerTextView
 
-        // display the number of the current question in the quiz
+        // mostra o numero da questão no quiz
         questionNumberTextView.setText(
                 getResources().getString(R.string.question) + " " +
                         (correctAnswers + 1) + " " +
                         getResources().getString(R.string.of) + " 10");
-
-        // extract the region from the next image's name
-        //String region =
-        //        nextImageName.substring(0, nextImageName.indexOf('-'));
 
 
         // use AssetManager to load next image from assets folder
@@ -347,9 +261,9 @@ public class MainActivityQuiz extends Activity
         for (int row = 0; row < buttonTableLayout.getChildCount(); ++row)
             ((TableRow) buttonTableLayout.getChildAt(row)).removeAllViews();
 
-        Collections.shuffle(elementos); // shuffle file names
+        Collections.shuffle(elementos); // bagunça a lista
 
-        // put the correct answer at the end of fileNameList
+        // bota a resposta correta pro final da lista (Interessante para não repetir nome.)
         int correct = elementos.indexOf(nextElement);
         elementos.add(elementos.remove(correct));
 
@@ -357,7 +271,8 @@ public class MainActivityQuiz extends Activity
         LayoutInflater inflater = (LayoutInflater) getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
 
-        // add 3, 6, or 9 answer Buttons based on the value of guessRows
+        List<String> respostas = new ArrayList<String>();
+        // Adiciona 3, 6, ou 9 botoes de resposta de acordo com guessRows
         for (int row = 0; row < guessRows; row++)
         {
             TableRow currentTableRow = getTableRow(row);
@@ -369,21 +284,54 @@ public class MainActivityQuiz extends Activity
                 Button newGuessButton =
                         (Button) inflater.inflate(R.layout.guess_button, null);
 
-                // get country name and set it as newGuessButton's text
-                //String fileName = fileNameList.get((row * 3) + column);
-                //newGuessButton.setText(getCountryName(fileName));
+                // Seta as alternativas de modo a não repetir
+                boolean control;
+                int cont;
                 switch (perguntaRandom){
                     case 0:
-                        newGuessButton.setText(elementos.get((row*3)+column).getNome());
+                         cont = (row * 3) + column;
+                        do{
+                            if(respostas.contains(elementos.get(cont).getNome())){
+                                control = true;
+                                cont++;
+                            }else{
+                                respostas.add(elementos.get(cont).getNome());
+                                newGuessButton.setText(elementos.get(cont).getNome());
+                                control=false;
+                            }
+                        }while(control && cont < (elementos.size()-2));
                         break;
                     case 1:
-                        newGuessButton.setText(elementos.get((row*3)+column).getFamilia());
+                        cont = (row * 3) + column;
+                        do{
+                            if(respostas.contains(elementos.get(cont).getFamilia())
+                                    || elementos.get(cont).getFamilia().equals(nextElement.getFamilia())){
+                                control = true;
+                                cont++;
+                            }else{
+                                respostas.add(elementos.get(cont).getFamilia());
+                                newGuessButton.setText(elementos.get(cont).getFamilia());
+                                control=false;
+                            }
+
+                        }while(control && cont < (elementos.size()-2));
                         break;
                     case 2:
-                        newGuessButton.setText(elementos.get((row*3)+column).getSubTipo());
+                        cont = (row * 3) + column;
+                        do{
+                            if(respostas.contains(elementos.get(cont).getSubTipo())
+                                    || elementos.get(cont).getSubTipo().equals(nextElement.getSubTipo())){
+                                control = true;
+                                cont++;
+                            }else{
+                                respostas.add(elementos.get(cont).getSubTipo());
+                                newGuessButton.setText(elementos.get(cont).getSubTipo());
+                                control=false;
+                            }
+
+                        }while(control && cont < (elementos.size()-2));
                         break;
                 }
-                //newGuessButton.setText(elementos.get((row*3)+column).getNome());
 
 
                 // register answerButtonListener to respond to button clicks
@@ -396,7 +344,6 @@ public class MainActivityQuiz extends Activity
         int row = random.nextInt(guessRows); // pick random row
         int column = random.nextInt(3); // pick random column
         TableRow randomTableRow = getTableRow(row); // get the TableRow
-        //String countryName = getCountryName(correctAnswer);
         switch (perguntaRandom){
             case 0:
                 ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getNome());
@@ -408,94 +355,7 @@ public class MainActivityQuiz extends Activity
                 ((Button)randomTableRow.getChildAt(column)).setText(nextElement.getSubTipo());
                 break;
         }
-        //((Button)randomTableRow.getChildAt(column)).setText(nextElement.getNome());
     } // end method loadNextElement
-
-
-
-
-    /*// after the user guesses a correct flag, load the next flag
-    private void loadNextFlag()
-    {
-        // get file name of the next flag and remove it from the list
-        String nextImageName = quizCountriesList.remove(0);
-        correctAnswer = nextImageName; // update the correct answer
-
-        answerTextView.setText(""); // clear answerTextView
-
-        // display the number of the current question in the quiz
-        questionNumberTextView.setText(
-                getResources().getString(R.string.question) + " " +
-                        (correctAnswers + 1) + " " +
-                        getResources().getString(R.string.of) + " 10");
-
-        // extract the region from the next image's name
-        String region =
-                nextImageName.substring(0, nextImageName.indexOf('-'));
-
-        // use AssetManager to load next image from assets folder
-        AssetManager assets = getAssets(); // get app's AssetManager
-        InputStream stream; // used to read in flag images
-
-        try
-        {
-            // get an InputStream to the asset representing the next flag
-            stream = assets.open(region + "/" + nextImageName + ".png");
-
-            // load the asset as a Drawable and display on the flagImageView
-            Drawable flag = Drawable.createFromStream(stream, nextImageName);
-            flagImageView.setImageDrawable(flag);
-        } // end try
-        catch (IOException e)
-        {
-            Log.e(TAG, "Error loading " + nextImageName, e);
-        } // end catch
-
-        // clear prior answer Buttons from TableRows
-        for (int row = 0; row < buttonTableLayout.getChildCount(); ++row)
-            ((TableRow) buttonTableLayout.getChildAt(row)).removeAllViews();
-
-        Collections.shuffle(fileNameList); // shuffle file names
-
-        // put the correct answer at the end of fileNameList
-        int correct = fileNameList.indexOf(correctAnswer);
-        fileNameList.add(fileNameList.remove(correct));
-
-        // get a reference to the LayoutInflater service
-        LayoutInflater inflater = (LayoutInflater) getSystemService(
-                Context.LAYOUT_INFLATER_SERVICE);
-
-        // add 3, 6, or 9 answer Buttons based on the value of guessRows
-        for (int row = 0; row < guessRows; row++)
-        {
-            TableRow currentTableRow = getTableRow(row);
-
-            // place Buttons in currentTableRow
-            for (int column = 0; column < 3; column++)
-            {
-                // inflate guess_button.xml to create new Button
-                Button newGuessButton =
-                        (Button) inflater.inflate(R.layout.guess_button, null);
-
-                // get country name and set it as newGuessButton's text
-                String fileName = fileNameList.get((row * 3) + column);
-                newGuessButton.setText(getCountryName(fileName));
-
-                // register answerButtonListener to respond to button clicks
-                newGuessButton.setOnClickListener(guessButtonListener);
-                currentTableRow.addView(newGuessButton);
-            } // end for
-        } // end for
-
-        // randomly replace one Button with the correct answer
-        int row = random.nextInt(guessRows); // pick random row
-        int column = random.nextInt(3); // pick random column
-        TableRow randomTableRow = getTableRow(row); // get the TableRow
-        String countryName = getCountryName(correctAnswer);
-        ((Button)randomTableRow.getChildAt(column)).setText(countryName);
-    } // end method loadNextFlag
-*/
-
 
 
 
@@ -509,7 +369,6 @@ public class MainActivityQuiz extends Activity
     private void submitGuess(Button guessButton)
     {
         String guess = guessButton.getText().toString();
-        //String answer = getCountryName(correctAnswer);
         String answer = "";
         switch (perguntaRandom){
             case 0:
@@ -522,7 +381,6 @@ public class MainActivityQuiz extends Activity
                 answer = nextElement.getSubTipo();
                 break;
         }
-        //String answer = nextElement.getNome();
         ++totalGuesses; // increment the number of guesses the user has made
 
         // if the guess is correct
@@ -718,7 +576,7 @@ public class MainActivityQuiz extends Activity
                 return true;
 
             case SAIR_MENU_ID:
-                //Cod. Sair aqui
+                //Cod. Sair aqui (VOLTAR PRA ACTIVITY PRINCIPAL)
                 Log.i(TAG, "onOptionsItemSelected: saiuuuuuuu");
         } // end switch
 
