@@ -146,13 +146,6 @@ public class Elemento {
                                             }
                                         case 17:
                                             return "Não-Metal/Halogêneo";
-                                        default:
-                                            if(getSimbolo().equals("H")){
-                                                return "Não-Metal/Outro Não-Metal";
-                                            }else {
-                                                System.out.println(getNome());
-                                                return null;
-                                            }
                                     }
                                 }
                             }
@@ -161,8 +154,12 @@ public class Elemento {
                 }
             }
         }
-        System.out.println(getNome());
-        return null;
+        if(getSimbolo().equals("H")||getNome().equals("Hidrogênio")){
+            return "Não-Metal/Outro Não-Metal";
+        }else {
+            System.out.println(getNome());
+            return null;
+        }
     }
 
     public String getTipo(){

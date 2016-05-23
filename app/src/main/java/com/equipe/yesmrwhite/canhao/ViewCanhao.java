@@ -76,6 +76,7 @@ public class ViewCanhao extends SurfaceView implements SurfaceHolder.Callback {
     private SoundPool soundPool;
     private SparseIntArray soundMap;
     private Paint elementoTexto;
+    private Paint timeText;
     private Paint textPaint;
     private Paint cannonballPaint;
     private Paint cannonPaint;
@@ -123,6 +124,7 @@ public class ViewCanhao extends SurfaceView implements SurfaceHolder.Callback {
         soundMap.put(BLOCKER_SOUND_ID, soundPool.load(context, R.raw.blocker_hit, 1));
         elementoTexto = new Paint();
         textPaint = new Paint();
+        timeText = new Paint();
         cannonPaint = new Paint();
         cannonballPaint = new Paint();
         blockerPaint = new Paint();
@@ -157,6 +159,9 @@ public class ViewCanhao extends SurfaceView implements SurfaceHolder.Callback {
         elementoTexto.setTextSize(w / 20);
         elementoTexto.setAntiAlias(true);
         elementoTexto.setColor(Color.WHITE);
+        timeText.setTextSize(w / 20);
+        timeText.setAntiAlias(true);
+        timeText.setColor(Color.WHITE);
         textPaint.setTextSize(w / 20);
         textPaint.setAntiAlias(true);
         cannonPaint.setStrokeWidth(lineWidth * 1.5f);
@@ -300,10 +305,10 @@ public class ViewCanhao extends SurfaceView implements SurfaceHolder.Callback {
                     targetPaint.setColor(Color.GREEN);
                     canvas.drawCircle(currentPoint.x, (float) (currentPoint.y + pieceLength / 2), (float) (pieceLength * 2 / 5), targetPaint);
                     if(i/2<numElementos) canvas.drawText(molecula.getElementosMolecula().get((int) (i / 2)).getElemento(), (currentPoint.x - screenWidth / 40), (int) (currentPoint.y + pieceLength / 2 + screenWidth / 60), elementoTexto);
-                    //canvas.drawText("Na6",(currentPoint.x-screenWidth/40), (int) (currentPoint.y + pieceLength/2+screenWidth/60), elementoTexto);
                 } else {
-                    targetPaint.setColor(Color.YELLOW);
+                    targetPaint.setColor(Color.BLUE);
                     canvas.drawCircle(currentPoint.x, (float) (currentPoint.y + pieceLength / 2), (float) (pieceLength * 2 / 5), targetPaint);
+                    canvas.drawText("+3s", (currentPoint.x - screenWidth / 40), (int) (currentPoint.y + pieceLength / 2 + screenWidth / 60), timeText);
                 }
                 // canvas.drawLine(currentPoint.x, currentPoint.y, target.end.x, (int) (currentPoint.y + pieceLength), targetPaint);
 
